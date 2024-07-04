@@ -1,0 +1,17 @@
+#principal {
+    width: 200px;
+    background-color: orange;
+    border:red 5px solid;
+    border-radius: 10px;
+    padding: 5px;
+    margin: auto;
+}
+
+.contenido {
+    margin: 10px;
+    text-align: center;
+}
+
+input {
+    padding: 5px;
+}
