@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="iFiltro">
+    </div>
+    <div id="iCampings"></div>
+</body>
+</html>
+<script src="./http-client.js"></script>
+<script src="./procesarCampings.js"></script>
+<script>
+    //https://datos.vigo.org/data/turismo/poi-campings-es.json
+
+    let arrayCampings;
+
+    doGetHTTPRequest(
+        //"https://datos.vigo.org", "8080", "/data/turismo/poi-campings-es.json",
+        "https://datos.vigo.org", "data/turismo/poi-campings-es.json",
+        procesarCampings, procesarError);
+
+    document.querySelector("#iFiltro").addEventListener("keyup", () => {
+        console.log("p1");
+        //console.log(document.querySelector("#iFiltro").value);
+        let loQueFiltra = document.querySelector("#iFiltro").value;
+        
+        let campingsFiltrados = arrayCampings.filter((camping) => {
+            //console.log(camping.postcode.includes(loQueFiltra)); 
+            return camping.postcode.includes(loQueFiltra);
+        });
+        document.querySelector("#iCampings").innerHTML = "";
+
+        campingsFiltrados.forEach(camping => {
+            creaFilaCamping(camping.address, 
+                camping.image_uri, 
+                camping.postcode, 
+                camping.description);
+        });
+    });
+
+    
+</script>
+
